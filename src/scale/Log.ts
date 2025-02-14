@@ -42,14 +42,17 @@ const mathLog = Math.log;
  * symmetric log, allowing negative values for logarithmic scales
  */
 
-const C = mathLog(10)
-
-function symMathLog(x: number): number {
-    if (x >= 0) {
-        return mathLog(1 + x / C);
+function symMathLog(x: number, linthresh: number = 0.03): number {
+    if (x >= -linthresh && x <= linthresh) {
+        const mul = (2 + mathLog(linthresh)) / linthresh;
+        return x * mul;
     }
-    
-    return -mathLog(1 - x / C);
+
+    if (x > 0) {
+        return 2 + mathLog(x);
+    }
+
+    return -2 - mathLog(-x);
 }
 
 /**
