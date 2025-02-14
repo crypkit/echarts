@@ -44,15 +44,15 @@ const mathLog = Math.log;
 
 function symMathLog(x: number, linthresh: number = 0.03): number {
     if (x >= -linthresh && x <= linthresh) {
-        const mul = (2 + mathLog(linthresh)) / linthresh
-        return x * mul
+        const mul = (2 + mathLog(linthresh)) / linthresh;
+        return x * mul;
     }
 
     if (x > 0) {
-        return 2 + mathLog(x)
+        return 2 + mathLog(x);
     }
-    
-    return - 2 - mathLog(-x)
+
+    return -2 - mathLog(-x);
 }
 
 /**
